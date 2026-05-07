@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <rect width="512" height="512" rx="96" fill="#0f1117"/>
+  <!-- Antenna tower -->
+  <line x1="256" y1="80" x2="256" y2="340" stroke="#6d9bff" stroke-width="20" stroke-linecap="round"/>
+  <!-- Signal arcs -->
+  <path d="M176 160 A114 114 0 0 1 336 160" fill="none" stroke="#6d9bff" stroke-width="20" stroke-linecap="round"/>
+  <path d="M210 200 A65 65 0 0 1 302 200"  fill="none" stroke="#6d9bff" stroke-width="20" stroke-linecap="round"/>
+  <!-- Base legs -->
+  <line x1="256" y1="340" x2="190" y2="420" stroke="#6d9bff" stroke-width="18" stroke-linecap="round"/>
+  <line x1="256" y1="340" x2="322" y2="420" stroke="#6d9bff" stroke-width="18" stroke-linecap="round"/>
+  <!-- Base cross bar -->
+  <line x1="178" y1="420" x2="334" y2="420" stroke="#6d9bff" stroke-width="18" stroke-linecap="round"/>
+</svg>
