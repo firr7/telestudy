@@ -1,1 +1,273 @@
+<!DOCTYPE html>
+<html lang="it" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TeleStudy | Telecomunicazioni</title>
+  <style>
+    :root {
+      --bg: #0f1117;
+      --surface: #171923;
+      --surface-2: #1e2230;
+      --text: #e9edf6;
+      --muted: #aeb7cc;
+      --accent: #6d9bff;
+      --accent-soft: rgba(109, 155, 255, 0.18);
+      --border: #2a3040;
+      --shadow: 0 10px 30px rgba(0, 0, 0, 0.28);
+    }
 
+    :root[data-theme="light"] {
+      --bg: #f4f7fc;
+      --surface: #ffffff;
+      --surface-2: #f0f4fb;
+      --text: #1b2233;
+      --muted: #5e697f;
+      --accent: #2f66f3;
+      --accent-soft: rgba(47, 102, 243, 0.14);
+      --border: #dbe3f1;
+      --shadow: 0 10px 25px rgba(18, 36, 70, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Inter", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      min-height: 100vh;
+      font-size: 17px;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 1rem 1.5rem;
+      background: color-mix(in srgb, var(--bg) 84%, transparent);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(8px);
+    }
+
+    .topbar h1 {
+      font-size: 1.2rem;
+      letter-spacing: 0.2px;
+    }
+
+    .theme-toggle {
+      background: var(--surface-2);
+      color: var(--text);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 0.55rem 0.9rem;
+      font-size: 0.95rem;
+      cursor: pointer;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 1.3rem;
+      max-width: 1280px;
+      margin: 1.4rem auto;
+      padding: 0 1rem 2rem;
+    }
+
+    .sidebar {
+      position: sticky;
+      top: 88px;
+      align-self: start;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      box-shadow: var(--shadow);
+      padding: 1rem;
+    }
+
+    .sidebar h2 {
+      font-size: 1rem;
+      margin-bottom: 0.8rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+    }
+
+    .sidebar ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .sidebar a {
+      text-decoration: none;
+      color: var(--text);
+      display: block;
+      padding: 0.6rem 0.7rem;
+      border-radius: 10px;
+      transition: 0.2s ease;
+      font-size: 0.97rem;
+    }
+
+    .sidebar a:hover,
+    .sidebar a:focus-visible {
+      background: var(--accent-soft);
+      color: var(--accent);
+      outline: none;
+    }
+
+    main {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      box-shadow: var(--shadow);
+      padding: 1.25rem;
+    }
+
+    .card h3 {
+      font-size: 1.2rem;
+      margin-bottom: 0.6rem;
+      line-height: 1.35;
+    }
+
+    .card p + p {
+      margin-top: 0.65rem;
+    }
+
+    .formula {
+      margin-top: 0.7rem;
+      padding: 0.7rem 0.8rem;
+      border-radius: 10px;
+      background: var(--surface-2);
+      border: 1px dashed var(--border);
+      font-family: "Fira Code", Consolas, monospace;
+      font-size: 0.95rem;
+      overflow-x: auto;
+    }
+
+    @media (max-width: 980px) {
+      .layout {
+        grid-template-columns: 1fr;
+      }
+
+      .sidebar {
+        position: static;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <h1>TeleStudy • Ripasso Telecomunicazioni</h1>
+    <button id="themeToggle" class="theme-toggle" type="button" aria-label="Cambia tema">☀️ Light</button>
+  </header>
+
+  <div class="layout">
+    <aside class="sidebar">
+      <h2>Argomenti</h2>
+      <ul>
+        <li><a href="#retroazione">Blocchi in retroazione</a></li>
+        <li><a href="#opamp">Amplificatori operazionali</a></li>
+        <li><a href="#transcaratteristica">Transcaratteristica</a></li>
+        <li><a href="#comparatore">Comparatore</a></li>
+        <li><a href="#cmrr">CMRR</a></li>
+        <li><a href="#digitalizzazione">Digitalizzazione segnale analogico</a></li>
+        <li><a href="#adc">ADC</a></li>
+        <li><a href="#dac">DAC</a></li>
+      </ul>
+    </aside>
+
+    <main>
+      <section id="retroazione" class="card">
+        <h3>Blocchi in retroazione</h3>
+        <p>Nei sistemi in retroazione negativa, una parte dell'uscita viene riportata in ingresso per correggere l'errore e stabilizzare il comportamento.</p>
+        <p class="formula">Funzione di trasferimento in retroazione: T(s) = G(s) / (1 + G(s)·H(s))</p>
+      </section>
+
+      <section id="opamp" class="card">
+        <h3>Amplificatori operazionali (Invertente e Non Invertente)</h3>
+        <p><strong>Invertente:</strong> il segnale entra sul morsetto “-”, il morsetto “+” è a massa virtuale.</p>
+        <p class="formula">Aᵥ = Vout/Vin = -Rf/Rin</p>
+        <p><strong>Non invertente:</strong> il segnale entra sul morsetto “+”, il feedback è sul morsetto “-”.</p>
+        <p class="formula">Aᵥ = 1 + (Rf/Rg)</p>
+      </section>
+
+      <section id="transcaratteristica" class="card">
+        <h3>Transcaratteristica</h3>
+        <p>La transcaratteristica descrive la relazione ingresso-uscita di un dispositivo: Vout=f(Vin), Iout=f(Vin), ecc.</p>
+        <p>Serve a capire zone lineari, saturazione e sensibilità del circuito nelle varie regioni operative.</p>
+      </section>
+
+      <section id="comparatore" class="card">
+        <h3>Comparatore</h3>
+        <p>Confronta due tensioni: se Vin &gt; Vref l'uscita va verso il livello alto, altrimenti verso il livello basso.</p>
+        <p>È usato per conversioni analogico-digitali, trigger e rivelazione soglia.</p>
+      </section>
+
+      <section id="cmrr" class="card">
+        <h3>CMRR (Common Mode Rejection Ratio)</h3>
+        <p>Misura la capacità di un amplificatore differenziale di rigettare segnali comuni ai due ingressi.</p>
+        <p class="formula">CMRR = Ad / Acm &nbsp;&nbsp;|&nbsp;&nbsp; CMRR(dB) = 20·log10(Ad/Acm)</p>
+      </section>
+
+      <section id="digitalizzazione" class="card">
+        <h3>Digitalizzazione di un segnale analogico</h3>
+        <p>La digitalizzazione avviene tramite campionamento, quantizzazione e codifica.</p>
+        <p>Secondo il teorema di Shannon-Nyquist, la frequenza di campionamento deve essere almeno doppia della massima frequenza del segnale.</p>
+        <p class="formula">fₛ ≥ 2·fmax</p>
+      </section>
+
+      <section id="adc" class="card">
+        <h3>ADC (Analog to Digital Converter)</h3>
+        <p>Converte un segnale analogico in valore digitale discreto. Parametri chiave: risoluzione (bit), range di ingresso, tempo di conversione e accuratezza.</p>
+      </section>
+
+      <section id="dac" class="card">
+        <h3>DAC (Digital to Analog Converter)</h3>
+        <p>Effettua la conversione inversa: da codice digitale a tensione/corrente analogica. È fondamentale in audio, controllo e sistemi embedded.</p>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    const root = document.documentElement;
+    const toggle = document.getElementById("themeToggle");
+    const savedTheme = localStorage.getItem("theme");
+    if (savedTheme === "light" || savedTheme === "dark") {
+      root.setAttribute("data-theme", savedTheme);
+    }
+
+    const updateToggleLabel = () => {
+      const theme = root.getAttribute("data-theme");
+      toggle.textContent = theme === "dark" ? "☀️ Light" : "🌙 Dark";
+    };
+
+    updateToggleLabel();
+
+    toggle.addEventListener("click", () => {
+      const nextTheme = root.getAttribute("data-theme") === "dark" ? "light" : "dark";
+      root.setAttribute("data-theme", nextTheme);
+      localStorage.setItem("theme", nextTheme);
+      updateToggleLabel();
+    });
+  </script>
+</body>
+</html>
